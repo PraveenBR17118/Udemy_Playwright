@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7020","@Web Client Login Playwright test for ZARA COAT 3","","2026-09-03","passed","2026-09-03","","ClientAppPO.spec.js","",""
+"","10566","@Webst Client App login","","2026-09-03","failed","2026-09-03","","ClientAppOtherWay.spec.js","",""
+"","5462","@Web Client Login Playwright test for ADIDAS ORIGINAL","","2026-09-03","passed","2026-09-03","","ClientAppPO.spec.js","",""
+"","5406","@Web Popup validations","","2026-09-03","passed","2026-09-03","","MoreValidations.spec.js","",""
