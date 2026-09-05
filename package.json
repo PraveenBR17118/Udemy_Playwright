@@ -7,7 +7,12 @@
     "regression": "npx playwright test",
     "webTests" : "npx playwright test --grep @Web",
     "APITests" : "npx playwright test --grep @API",
-    "SafariNewConfig" : "npx playwright test --config playwright.config1.js --project=safari"
+    "SafariNewConfig" : "npx playwright test --config playwright.config1.js --project=safari",
+    "Allureregression": "px playwright test --reporter=line,allure-playwright",
+    "AllurewebTests" : "npx playwright test --grep @Web --reporter=line,allure-playwright",
+    "AllureAPITests" : "npx playwright test --grep @API --reporter=line,allure-playwright",
+    "AllureSafariNewConfig" : "npx playwright test --config playwright.config1.js --project=safari --reporter=line,allure-playwright"
+
   },
   "keywords": [],
   "author": "",
