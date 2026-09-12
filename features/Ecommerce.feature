@@ -8,7 +8,7 @@ Feature: Ecommerce validations
     When Enter valid details and Place the Order "tanvitkashyap@gmail.com"
     Then Verify order is present in the OrderHistory
 
-    
+
 @ValidationError
   # The first example has two steps
   Scenario Outline: Placing the Order

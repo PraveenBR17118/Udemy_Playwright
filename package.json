@@ -11,19 +11,22 @@
     "Allureregression": "npx playwright test --reporter=line,allure-playwright",
     "AllurewebTests": "npx playwright test --grep @Web --reporter=line,allure-playwright",
     "AllureAPITests": "npx playwright test --grep @API --reporter=line,allure-playwright",
-    "AllureSafariNewConfig": "npx playwright test --config playwright.config1.js --project=safari --reporter=line,allure-playwright"
+    "AllureSafariNewConfig": "npx playwright test --config playwright.config1.js --project=safari --reporter=line,allure-playwright",
+    "CucumberRegression": "npx cucumber-js --tags '@Regression' --retry 1 --exit --format html:cucumberRetry-report.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@azure/identity": "^4.13.2",
+    "@azure/playwright": "^1.1.6",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.1.2",
     "allure-playwright": "^3.12.0"
   },
   "dependencies": {
-    "exceljs": "^4.4.0",
-    "allure-playwright": "^3.12.0"
+    "allure-playwright": "^3.12.0",
+    "exceljs": "^4.4.0"
   }
 }
