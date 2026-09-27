@@ -8,13 +8,13 @@ module.exports = defineConfig(
   config,
   createAzurePlaywrightConfig(config, {
     // Jenkins uses PLAYWRIGHT_SERVICE_ACCESS_TOKEN
-    serviceAuthType: ServiceAuth.ACCESS_TOKEN,
+    serviceAuthType: ServiceAuth.ENTRA_ID,
     exposeNetwork: '<loopback>',
     connectTimeout: 3 * 60 * 1000, // 3 minutes
     os: ServiceOS.LINUX,
     // Name shown in Azure Playwright Workspace
     runName: 'AWS-Jenkins-Playwright',
-    //credential: new DefaultAzureCredential(),
+    credential: new DefaultAzureCredential(),
   }),
   {
     /*
@@ -27,7 +27,7 @@ module.exports = defineConfig(
     */
     reporter: [
       ["html", { open: "never" }]
-      //["@azure/playwright/reporter"],
+      ["@azure/playwright/reporter"],
     ],
   }
 );
