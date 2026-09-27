@@ -1,12 +1,6 @@
 const ExcelJs = require("exceljs");
 const {test,expect} = require('@playwright/test');
 
-function logJenkinsSkipNotice() {
-  console.log("Upload/download test is intentionally commented out for Jenkins execution.");
-}
-
-logJenkinsSkipNotice();
-
 //let rownum;
 //let colnum;
 //let output ={rownum:-1, column:-1}
@@ -129,7 +123,7 @@ logJenkinsSkipNotice();
 //  // await expect(desiredRow.locator('#cell-4-undefined')).toContainText(updateValue);
 
 
-
-
-
 //   })
+// Write a function to log the test is commented for jenkins excution 
+
+
