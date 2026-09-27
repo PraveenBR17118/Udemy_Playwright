@@ -26,7 +26,7 @@ module.exports = defineConfig(
     If you're already using other reporters, add them to this array.
     */
     reporter: [
-      ["html", { open: "never" }],
+      ["html", { open: "never" }]
       //["@azure/playwright/reporter"],
     ],
   }
