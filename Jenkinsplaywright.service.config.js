@@ -1,6 +1,6 @@
 const { defineConfig } = require('@playwright/test');
 const { createAzurePlaywrightConfig, ServiceOS ,ServiceAuth} = require('@azure/playwright');
-//const { DefaultAzureCredential } = require('@azure/identity');
+const { DefaultAzureCredential } = require('@azure/identity');
 const config = require('./playwright.config');
 
 /* Learn more about service configuration at https://aka.ms/pww/docs/config */
