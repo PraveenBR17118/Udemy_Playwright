@@ -27,6 +27,7 @@ module.exports = defineConfig(
     */
     reporter: [
       ["html", { open: "never" }],
+      ["json", { outputFile: "test-results/results.json" }],
       ["@azure/playwright/reporter"],
     ],
   }
