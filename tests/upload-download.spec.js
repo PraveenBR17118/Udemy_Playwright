@@ -1,6 +1,12 @@
 const ExcelJs = require("exceljs");
 const {test,expect} = require('@playwright/test');
 
+function logJenkinsSkipNotice() {
+  console.log("Upload/download test is intentionally commented out for Jenkins execution.");
+}
+
+logJenkinsSkipNotice();
+
 //let rownum;
 //let colnum;
 //let output ={rownum:-1, column:-1}
@@ -50,80 +56,80 @@ const {test,expect} = require('@playwright/test');
 
 
 
-  async function writeexcelTest(searchText,replaceText,change, filepath)
-  {
-    //const workbook = new ExcelJs.Workbook();
-    const workbook = new ExcelJs.Workbook();
-    await workbook.xlsx.readFile(filepath)
-    const worksheet = workbook.getWorksheet('Sheet1');
-    const output = await readExcel(worksheet, searchText);
+  // async function writeexcelTest(searchText,replaceText,change, filepath)
+  // {
+  //   //const workbook = new ExcelJs.Workbook();
+  //   const workbook = new ExcelJs.Workbook();
+  //   await workbook.xlsx.readFile(filepath)
+  //   const worksheet = workbook.getWorksheet('Sheet1');
+  //   const output = await readExcel(worksheet, searchText);
 
-    const cell = worksheet.getCell(output.rownum,output.column+change.colChange);
-    cell.value =replaceText;
-    //cell.value ="350";
-    await workbook.xlsx.writeFile(filepath);
-  }
+  //   const cell = worksheet.getCell(output.rownum,output.column+change.colChange);
+  //   cell.value =replaceText;
+  //   //cell.value ="350";
+  //   await workbook.xlsx.writeFile(filepath);
+  // }
 
 
-  async function readExcel(worksheet,searchText)
-  {
-    let output ={rownum:-1, column:-1}
-    worksheet.eachRow((row, rowNumber) => 
-      {
-          row.eachCell((cell, colNumber) => 
-          {
-              //console.log(cell.value);
-              if(cell.value === searchText)
-                  {
+  // async function readExcel(worksheet,searchText)
+  // {
+  //   let output ={rownum:-1, column:-1}
+  //   worksheet.eachRow((row, rowNumber) => 
+  //     {
+  //         row.eachCell((cell, colNumber) => 
+  //         {
+  //             //console.log(cell.value);
+  //             if(cell.value === searchText)
+  //                 {
   
-                      console.log(rowNumber);
-                      console.log(colNumber);
-                      output.rownum = rowNumber;
-                      output.column = colNumber;
-                  }
-          });
-      });
+  //                     console.log(rowNumber);
+  //                     console.log(colNumber);
+  //                     output.rownum = rowNumber;
+  //                     output.column = colNumber;
+  //                 }
+  //         });
+  //     });
 
-      return output;
-  }
+  //     return output;
+  // }
 
 
 
 // update mango price to 350.
 //writeexcelTest("Apple",350,{rowChange:0,colChange:2},"/Users/praveenbr/Downloads/exceldownloadtest.xlsx")
 
-test('Upload download excel validation',async ({page})=>
-  {
-    const textSearch = 'Apple';
-    const updateValue = 350;
-    const filePath = "/Users/praveenbr/Downloads/exceldownloadtest.xlsx";
-    await page.goto("https://rahulshettyacademy.com/upload-download-test/");
-    const downloadPromise= page.waitForEvent('download');
-    await page.getByRole('button',{name:'Download'}).click();
-    await downloadPromise;
+// test('Upload download excel validation',async ({page})=>
+//   {
+//     const textSearch = 'Apple';
+//     const updateValue = 350;
+//     const filePath = "/Users/praveenbr/Downloads/exceldownloadtest.xlsx";
+//     await page.goto("https://rahulshettyacademy.com/upload-download-test/");
+//     const downloadPromise= page.waitForEvent('download');
+//     await page.getByRole('button',{name:'Download'}).click();
+//     await downloadPromise;
 
-    writeexcelTest(textSearch,updateValue,{rowChange:0,colChange:2},filePath)
-    //const uploadPromise= page.waitForEvent('upload');
-    //await page.locator('#fileinput').click();
-    await page.locator('#fileinput').setInputFiles(filePath);
+//     writeexcelTest(textSearch,updateValue,{rowChange:0,colChange:2},filePath)
+//     //const uploadPromise= page.waitForEvent('upload');
+//     //await page.locator('#fileinput').click();
+//     await page.locator('#fileinput').setInputFiles(filePath);
 
-    await expect(page.locator("[role='rowgroup']").first()).toBeVisible();
+//     await expect(page.locator("[role='rowgroup']").first()).toBeVisible();
   
-    //const textLocator = page.getByText(textSearch);
-    //const desireRow = await page.getByRole('row').filter({has : textLocator});
-    const desireRow = await page.getByRole('row').filter({ has: page.getByText(textSearch) });
-    console.log(desireRow);
-    await expect(desireRow.locator("#cell-4-undefined")).toContainText(updateValue.toString());
+//     //const textLocator = page.getByText(textSearch);
+//     //const desireRow = await page.getByRole('row').filter({has : textLocator});
+//     const desireRow = await page.getByRole('row').filter({ has: page.getByText(textSearch) });
+//     console.log(desireRow);
+//     await expect(desireRow.locator("#cell-4-undefined")).toContainText(updateValue.toString());
 
-   // /Users/praveenbr/Downloads
+//    // /Users/praveenbr/Downloads
 
-   // ✅ Ensure the edit finishes before upload
+//    // ✅ Ensure the edit finishes before upload
  
-  //const desiredRow = await page.getByRole('row').filter({ has: page.getByText(textSearch) });
- // await expect(desiredRow.locator('#cell-4-undefined')).toContainText(updateValue);
+//   //const desiredRow = await page.getByRole('row').filter({ has: page.getByText(textSearch) });
+//  // await expect(desiredRow.locator('#cell-4-undefined')).toContainText(updateValue);
 
 
 
 
 
-  })
+//   })

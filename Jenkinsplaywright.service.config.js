@@ -1,6 +1,6 @@
 const { defineConfig } = require('@playwright/test');
 const { createAzurePlaywrightConfig, ServiceOS ,ServiceAuth} = require('@azure/playwright');
-//const { DefaultAzureCredential } = require('@azure/identity');
+const { DefaultAzureCredential } = require('@azure/identity');
 const config = require('./playwright.config');
 
 /* Learn more about service configuration at https://aka.ms/pww/docs/config */
@@ -8,13 +8,13 @@ module.exports = defineConfig(
   config,
   createAzurePlaywrightConfig(config, {
     // Jenkins uses PLAYWRIGHT_SERVICE_ACCESS_TOKEN
-    serviceAuthType: ServiceAuth.ACCESS_TOKEN,
+    serviceAuthType: ServiceAuth.ENTRA_ID,
     exposeNetwork: '<loopback>',
     connectTimeout: 3 * 60 * 1000, // 3 minutes
     os: ServiceOS.LINUX,
     // Name shown in Azure Playwright Workspace
     runName: 'AWS-Jenkins-Playwright',
-    //credential: new DefaultAzureCredential(),
+    credential: new DefaultAzureCredential(),
   }),
   {
     /*
@@ -26,8 +26,8 @@ module.exports = defineConfig(
     If you're already using other reporters, add them to this array.
     */
     reporter: [
-      ["html", { open: "never" }]
-      //["@azure/playwright/reporter"],
+      ["html", { open: "never" }],
+      ["@azure/playwright/reporter"],
     ],
   }
 );
