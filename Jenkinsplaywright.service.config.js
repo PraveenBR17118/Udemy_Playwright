@@ -1,18 +1,20 @@
 const { defineConfig } = require('@playwright/test');
-const { createAzurePlaywrightConfig, ServiceOS } = require('@azure/playwright');
-const { DefaultAzureCredential } = require('@azure/identity');
+const { createAzurePlaywrightConfig, ServiceOS ,ServiceAuth} = require('@azure/playwright');
+//const { DefaultAzureCredential } = require('@azure/identity');
 const config = require('./playwright.config');
 
 /* Learn more about service configuration at https://aka.ms/pww/docs/config */
-export default defineConfig(
+module.exports = defineConfig(
   config,
   createAzurePlaywrightConfig(config, {
-    //serviceAuthType: ServiceAuth.ACCESS_TOKEN,
+    // Jenkins uses PLAYWRIGHT_SERVICE_ACCESS_TOKEN
+    serviceAuthType: ServiceAuth.ACCESS_TOKEN,
     exposeNetwork: '<loopback>',
     connectTimeout: 3 * 60 * 1000, // 3 minutes
     os: ServiceOS.LINUX,
-    //runName: 'AWS-Jenkins-Playwright',
-    credential: new DefaultAzureCredential(),
+    // Name shown in Azure Playwright Workspace
+    runName: 'AWS-Jenkins-Playwright',
+    //credential: new DefaultAzureCredential(),
   }),
   {
     /*
